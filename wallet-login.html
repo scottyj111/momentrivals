@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Connect Wallet</title>
+  <script src="https://unpkg.com/@onflow/fcl"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 24px;
+      background-color: #0052ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Connect to Top Shot Wallet</h1>
+  <p>Tap below to authenticate with your Flow wallet.</p>
+
+  <button onclick="connectWallet()">Connect Wallet</button>
+
+  <script>
+    // Setup
+    fcl.config()
+      .put("accessNode.api", "https://rest-mainnet.onflow.org")
+      .put("discovery.wallet", "https://fcl-discovery.onflow.org/authn")
+
+    async function connectWallet() {
+      try {
+        const user = await fcl.authenticate()
+        const address = user.addr
+        if (address) {
+          // Redirect back to your iOS app
+          window.location.href = `momentrivals://wallet?address=${address}`
+        }
+      } catch (e) {
+        alert("Wallet connection failed.")
+        console.error(e)
+      }
+    }
+  </script>
+</body>
+</html>
+
