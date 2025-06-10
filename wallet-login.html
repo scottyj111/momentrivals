@@ -30,8 +30,11 @@
   <script>
     // Setup
     fcl.config()
-      .put("accessNode.api", "https://rest-mainnet.onflow.org")
-      .put("discovery.wallet", "https://fcl-discovery.onflow.org/authn")
+  .put("app.detail.title", "Moment Rivals") // optional
+  .put("app.detail.icon", "https://your-app.com/icon.png") // optional
+  .put("accessNode.api", "https://access-mainnet.onflow.org") // Flow mainnet
+  .put("discovery.wallet", "https://flow-wallet.blocto.app/authn") // or Dapper's URL
+  .put("authn.redirect", "momentrivals://wallet") // ✅ YOUR custom scheme
 
     async function connectWallet() {
       try {
